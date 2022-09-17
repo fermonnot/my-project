@@ -6,12 +6,22 @@ export const Navbar = () => {
 		<nav className="navbar navbar-light bg-light">
 			<div className="container">
 				<Link to="/">
-					<span className="navbar-brand mb-0 h1">React Boilerplate</span>
+					<span className="navbar-brand mb-0 h1">DISTRICLICK</span>
 				</Link>
 				<div className="ml-auto">
-					<Link to="/demo">
-						<button className="btn btn-primary">Check the Context in action</button>
-					</Link>
+					<div className="dropdown">
+						<a className ="btn btn-secondary " href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+							<i className="fas fa-bars"></i>
+						</a>
+
+						<ul className="dropdown-menu">
+							<li><Link to="/demo" className="dropdown-item" href="#">Iniciar sesion</Link></li>
+							<li><Link to="/demo" className="dropdown-item" href="#">Registrarse</Link></li>
+							<li><Link to="/demo" className="dropdown-item" href="#">Quienes Somos</Link></li>
+
+							
+						</ul>
+					</div>
 				</div>
 			</div>
 		</nav>
