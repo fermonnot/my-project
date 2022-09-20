@@ -1,6 +1,6 @@
 import React, { useContext, useEffect } from "react";
 import { Context } from "../store/appContext";
-import "../../styles/home.css";
+import "../../styles/products.css";
 
 export const Products = () => {
 	const { store, actions } = useContext(Context);
@@ -23,7 +23,7 @@ export const Products = () => {
 				</div>
 				<div className="carousel-inner">
 					<div className="carousel-item active">
-						<img src="https://picsum.photos/id/237/200/300" alt="..." />
+						<img src="https://picsum.photos/id/237/1000/720" className="CarrouselImg" alt="..." />
 						<div className="carousel-caption d-none d-md-block">
 							<h5>First slide label</h5>
 							<p>Some representative placeholder content for the first slide.</p>
@@ -68,7 +68,7 @@ export const Products = () => {
 				</button>
 			</div>
 			<div className="container row my-3  d-flex justify-content-center">
-				{store.products.map((products,index) => {
+				{store.products.map((products, index) => {
 					return (
 						<div key={index} className="card col-xs-12 col-sm-6 col-md-4 col-lg-3 mx-1 my-2">
 
@@ -83,7 +83,7 @@ export const Products = () => {
 					);
 				})}
 			</div>
-				
+
 
 
 		</div>
