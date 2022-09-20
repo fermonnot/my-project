@@ -2,7 +2,7 @@ const getState = ({ getStore, getActions, setStore }) => {
 	return {
 		store: {
 			message: null,
-			urlBase: "http://192.168.0.103:3001/api",
+			urlBase: "http://127.0.0.1:3001/api",
 			endPoint: "products",
 			products: []
 
@@ -11,22 +11,22 @@ const getState = ({ getStore, getActions, setStore }) => {
 			// Use getActions to call a function within a fuction
 			getProducts: async () => {
 				let store = getStore()
-				try {	
-						let response = await fetch(`${store.urlBase}/${store.endPoint}`)
-						let data = await response.json();
-						console.log(data)
-						if (response.ok){
-							setStore({
-								...store,
-								products: data
-							})
+				try {
+					let response = await fetch(`${store.urlBase}/${store.endPoint}`)
+					let data = await response.json();
+					console.log(data)
+					if (response.ok) {
+						setStore({
+							...store,
+							products: data
+						})
 
-						}
-					} catch (error) {
-					
-						console.log(error)
 					}
-				},
+				} catch (error) {
+
+					console.log(error)
+				}
+			},
 
 			// getMessage: async () => {
 			// 	try{
