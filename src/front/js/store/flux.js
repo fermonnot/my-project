@@ -2,7 +2,7 @@ const getState = ({ getStore, getActions, setStore }) => {
 	return {
 		store: {
 			message: null,
-			urlBase: "http://127.0.0.1:3001/api",
+			urlBase: "https://districlick.herokuapp.com/api",
 			endPoint: "products",
 			products: []
 
