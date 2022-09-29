@@ -4,6 +4,7 @@ This module takes care of starting the API Server, Loading the DB and Adding the
 from flask import Flask, request, jsonify, url_for, Blueprint
 from api.models import db,User
 from api.utils import generate_sitemap, APIException
+from werkzeug.security import generate_password_hash, check_password_hash
 
 
 api = Blueprint('api', __name__)
@@ -17,6 +18,7 @@ def handle_hello():
     }
 
     return jsonify(response_body), 200
+
 
 @api.route('/users', methods=['GET'])
 @api.route('/users/<int:user_id>', methods=['GET'])
@@ -35,6 +37,12 @@ def handle_users(user_id = None):
             
         return jsonify({"message":"not found"}), 404
  
+def set_password(password):
+    return generate_password_hash(password)
+
+def check_password(hash_pasword,password):
+    return check_password_hash(hash_pasword,password)
+
 
 @api.route('/user', methods=['POST'])   
 def add_user():
@@ -48,7 +56,8 @@ def add_user():
         if email is None or password is None or rif is None or sicm is None:
             return jsonify('Por favor, complete los campos correctamente'),400
         else:
-            print('guardar')  
+            password= set_password(password)
+            print('guardar',password)  
             request_user= User(email=email,password=password,rif=rif,sicm=sicm)
             db.session.add(request_user)
 
@@ -57,5 +66,22 @@ def add_user():
                 return jsonify ('good'),201
             except Exception as error:
                 db.session.rollback()
-                return jsonify('intenta de nuevo'),500      
+                return jsonify(error.args),500      
     return jsonify(),201 
+
+
+@api.route('/login',methods=['POST'])
+def login():
+    if request.method == 'POST':
+        body = request.json
+        email = body.get('email',None)
+        password = body.get('password',None)
+
+        login_user = User.query.filter_by (email=email, password=password).one_or_none()
+        if login_user:
+            print('permiso')
+            return jsonify('acceso consedido'),200
+        else:
+            return jsonify ('acceso denegado'),400 
+
+    return jsonify ('bienvenido'),201
