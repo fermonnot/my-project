@@ -2,10 +2,12 @@ const getState = ({ getStore, getActions, setStore }) => {
 	return {
 		store: {
 			message: null,
-			urlBase: "https://districlick.herokuapp.com/api",
+			// urlBase: "https://districlick.herokuapp.com/api",
+			urlBase: "http://127.0.0.1:3001/api",
 			endPoint: "products",
-			products: []
-
+			products: [],
+			product: [],
+			newProducts:[],
 		},
 		actions: {
 			// Use getActions to call a function within a fuction
@@ -28,32 +30,76 @@ const getState = ({ getStore, getActions, setStore }) => {
 				}
 			},
 
-			// getMessage: async () => {
-			// 	try{
-			// 		// fetching data from the backend
-			// 		const resp = await fetch(process.env.BACKEND_URL + "/api/hello")
-			// 		const data = await resp.json()
-			// 		setStore({ message: data.message })
-			// 		// don't forget to return something, that is how the async resolves
-			// 		return data;
-			// 	}catch(error){
-			// 		console.log("Error loading message from backend", error)
+			
+
+
+			addProduct: async (product) => {
+				let store = getStore()
+
+
+				try {
+					let response = await fetch(`${store.urlBase}/products`, {
+						method: "POST",
+						headers: { "Content-Type": "application/json" },
+						body: JSON.stringify(product)
+					})
+					console.log(response)
+					if (response.ok) {
+						true,
+						console.log("me guardé")
+					}
+
+				} catch (error) {
+					false,
+					console.log("explote"(error))
+				}
+
+			},
+			
+			deleteProduct: async (product_id) => {
+				let store = getStore()
+				try {
+					let response = await fetch(`${store.urlBase}/products/<int:product_id>`, {
+						method: "DELETE",
+						headers: { "Content-Type": "application/json" },
+						body: JSON.stringify(product_id)
+					})
+					console.log(response)
+					if (response.ok) {
+						console.log("me borré")
+					}
+
+				} catch (error) {
+					console.log(error)
+				}
+
+			},
+
+
+
+
+
+
+
+			// deleteProduct: async (product_id) => {
+			// 	let store = getStore()
+			// 	let newProducts = store.products.filter((item, index) => {
+			// 		return (product_id !== index)
+			// 	});
+			// 	try {
+			// 		let response = await fetch(`${store.urlBase}/products/<int:product_id>`, {
+			// 			method: "PUT",
+			// 			headers: { "Content-Type": "application/json" },
+			// 			body: JSON.stringify(newProducts)
+			// 		});
+			// 		if (response.ok) {
+			// 			console.log("me borre")
+			// 		};
+			// 	} catch (error) {
+			// 		console.log((error))
 			// 	}
 			// },
-			// changeColor: (index, color) => {
-			// 	//get the store
-			// 	const store = getStore();
-
-			// 	//we have to loop the entire demo array to look for the respective index
-			// 	//and change its color
-			// 	const demo = store.demo.map((elm, i) => {
-			// 		if (i === index) elm.background = color;
-			// 		return elm;
-			// 	});
-
-			// 	//reset the global store
-			// 	setStore({ demo: demo });
-			// }
+			
 		}
 	};
 };
