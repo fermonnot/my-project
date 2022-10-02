@@ -19,6 +19,30 @@ def handle_hello():
 
     return jsonify(response_body), 200
 
+@api.route('/products', methods=['GET'])
+@api.route('/products/<int:product_id>', methods=['GET'])
+def handle_products(product_id = None):
+
+    if request.method == 'GET':
+        if product_id is None:
+            products = Products()
+            products = products.query.all()
+            if products is None:
+                return jsonify ({"Message":"empty list"})
+            else:
+                return jsonify(list (map(lambda item: item.serialize(), products))), 200  
+        else: 
+           
+             # primero se coloca el valor de mi tabla en model(id) y luego el establecido aca en el decorador(product_id)
+            product = Products.query.filter_by(id=product_id).first()    
+                     
+            return jsonify(product.serialize()), 200 
+            
+
+        return jsonify ({"message":"Not Found"}), 404
+
+
+
 
 @api.route('/users', methods=['GET'])
 @api.route('/users/<int:user_id>', methods=['GET'])

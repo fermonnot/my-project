@@ -38,3 +38,20 @@ class User(db.Model):
             "sicm": self.sicm,
             # do not serialize the password, its a security breach
         }
+
+class Products (db.Model):
+    id = db.Column(db.Integer, primary_key=True)
+    description = db.Column(db.String(120), unique=True, nullable=False)
+    laboratory = db.Column(db.String(120), unique=False, nullable=False)
+    price = db.Column(db.Float, unique=False, nullable=False)
+    # url_image = db.Column(db.String(50), unique=False, nullable=False) ----- para que funcione debo borrar todos los datos 
+    # de la base de datos
+
+    def serialize(self):
+        return {
+            "id": self.id,
+            "description": self.description,
+            "laboratory":self.laboratory,
+            "price": self.price
+        }
+    
