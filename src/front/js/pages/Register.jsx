@@ -30,7 +30,7 @@ const Register = () => {
 		console.log ("good");
 		  let response = await actions.userRegister(userRegister);
 	      if (response) {
-		    setUserRegister({ initState });
+		    setUserRegister( initState );
 		    alert ('se registro con exito');
 	      } else {
 		    alert ('intente de nuevo');

@@ -2,7 +2,7 @@
 This module takes care of starting the API Server, Loading the DB and Adding the endpoints
 """
 from flask import Flask, request, jsonify, url_for, Blueprint
-from api.models import db,User
+from api.models import db,User, Products
 from api.utils import generate_sitemap, APIException
 from werkzeug.security import generate_password_hash, check_password_hash
 
@@ -100,9 +100,11 @@ def login():
         body = request.json
         email = body.get('email',None)
         password = body.get('password',None)
+        
+        if check_password is True : 
+        
+            login_user = User.query.filter_by (email=email, password=password).one_or_none()
 
-        login_user = User.query.filter_by (email=email, password=password).one_or_none()
-        if login_user:
             print('permiso')
             return jsonify('acceso consedido'),200
         else:
