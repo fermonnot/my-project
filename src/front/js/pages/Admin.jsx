@@ -8,9 +8,9 @@ export const Admin = () => {
 	const { store, actions } = useContext(Context);
 
 	
-	let handleDelete= (product) => {   
+	let handleDelete= (id) => {   
         
-        actions.deleteProduct(product)
+        actions.deleteProduct(id)
 
     }
 
@@ -18,14 +18,14 @@ export const Admin = () => {
 
 	return (
 		<div className="container">
-			<table className="table table-striped">
+			<table className="table table-striped text-center">
 				<thead>
 					<tr>
-						<th scope="col">Description</th>
-						<th scope="col">Laboratory</th>
-						<th scope="col">Price (Bs)</th>
-						<th scope="col">Quantity</th>
-						<th scope="col">Action</th>
+						<th scope="col">Descripción</th>
+						<th scope="col">Laboratorio</th>
+						<th scope="col">Precio (Bs)</th>
+						<th scope="col">Cantidad</th>
+						<th scope="col">Accción</th>
 					</tr>
 				</thead>
 				<tbody>
@@ -37,12 +37,13 @@ export const Admin = () => {
 								<td>{products.price}</td>
 								<td>{products.quantity}</td>
 								<td>
+									<div>
 									<i
-										onClick={handleDelete}
+										onClick={()=>handleDelete(products.id)}
 										className="close far fa-times-circle mx-5 p-2"
 										type="button">
 									</i>
-									<i className="fas fa-pencil-alt" type="button"></i>		
+									</div>	
 								</td>
 					
 							</tr>

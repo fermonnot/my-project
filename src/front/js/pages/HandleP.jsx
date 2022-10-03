@@ -56,20 +56,20 @@ export const Handlep = () => {
             <div className="list-group">
                 <form>
                     <div className="mb-3">
-                        <label htmlFor="exampleInputEmail1" className="form-label">Description</label>
+                        <label htmlFor="exampleInputEmail1" className="form-label">Descripción</label>
                         <input name="description" value={product.description} type="description" className="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" onChange={handleChange} />
-                        <div id="emailHelp" className="form-text">Name and drescription of the product.</div>
+                        <div id="emailHelp" className="form-text">Nombre y descripción del producto.</div>
                     </div>
                     <div className="mb-3">
-                        <label htmlFor="exampleInputlaboratory1" className="form-label">laboratory</label>
+                        <label htmlFor="exampleInputlaboratory1" className="form-label">Laboratorio</label>
                         <input type="laboratory" name="laboratory" value={product.laboratory} className="form-control" id="exampleInputlaboratory1" onChange={handleChange} />
                     </div>
                     <div className="mb-3">
-                        <label htmlFor="exampleInputlaboratory1" className="form-label">price</label>
+                        <label htmlFor="exampleInputlaboratory1" className="form-label">Precio</label>
                         <input type="laboratory" name="price" value={product.price} className="form-control" id="exampleInputlaboratory1" onChange={handleChange} />
                     </div>
                     <div className="mb-3">
-                        <label htmlFor="exampleInputlaboratory1" className="form-label">quantity</label>
+                        <label htmlFor="exampleInputlaboratory1" className="form-label">Cantidad</label>
                         <input type="laboratory" name="quantity" value={product.quantity} className="form-control" id="exampleInputlaboratory1" onChange={handleChange} />
                     </div>
                     <div >

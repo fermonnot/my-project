@@ -7,7 +7,7 @@ const getState = ({ getStore, getActions, setStore }) => {
 			endPoint: "products",
 			products: [],
 			product: [],
-			newProducts:[],
+			
 		},
 		actions: {
 			// Use getActions to call a function within a fuction
@@ -45,24 +45,24 @@ const getState = ({ getStore, getActions, setStore }) => {
 					})
 					console.log(response)
 					if (response.ok) {
-						true,
+						
 						console.log("me guardé")
 					}
 
 				} catch (error) {
-					false,
+					
 					console.log("explote"(error))
 				}
 
 			},
 			
 			deleteProduct: async (product_id) => {
+				console.log(product_id)
 				let store = getStore()
 				try {
-					let response = await fetch(`${store.urlBase}/products/<int:product_id>`, {
+					let response = await fetch(`${store.urlBase}/products/${product_id}`, {
 						method: "DELETE",
-						headers: { "Content-Type": "application/json" },
-						body: JSON.stringify(product_id)
+						
 					})
 					console.log(response)
 					if (response.ok) {
