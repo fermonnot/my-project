@@ -100,11 +100,10 @@ def login():
         body = request.json
         email = body.get('email',None)
         password = body.get('password',None)
+        login_user = User.query.filter_by(email=email).one_or_none()
         
-        if check_password is True : 
-        
-            login_user = User.query.filter_by (email=email, password=password).one_or_none()
-
+        if check_password(login_user.password,password) is True :
+                        
             print('permiso')
             return jsonify('acceso consedido'),200
         else:

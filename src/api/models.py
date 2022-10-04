@@ -54,4 +54,5 @@ class Products (db.Model):
             "laboratory":self.laboratory,
             "price": self.price
         }
+ 
     
