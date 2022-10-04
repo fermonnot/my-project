@@ -2,6 +2,16 @@ const getState = ({ getStore, getActions, setStore }) => {
 	return {
 		store: {
 			message: null,
+
+			token: localStorage.getItem("token") || "",
+
+		},
+		actions: {
+			userRegister: async (user) => {
+				let store = getStore();
+				try {
+					let response = await fetch('http://127.0.0.1:3001/api/user', {
+
 			// urlBase: "https://districlick.herokuapp.com/api",
 			urlBase: "http://127.0.0.1:3001/api",
 			endPoint: "products",
@@ -33,6 +43,7 @@ const getState = ({ getStore, getActions, setStore }) => {
 				let store = getStore();
 				try {
 					let response = await fetch(`${store.urlBase}/user`, {
+
 						method: 'POST',
 						headers: {
 							'Content-Type': 'application/json',
@@ -48,9 +59,11 @@ const getState = ({ getStore, getActions, setStore }) => {
 				}
 			},
 			Login: async (user) => {
+
 				let store = getStore()
 				try {
 					let response = await fetch(`${store.urlBase}/login`, {
+
 						method: 'POST',
 						headers: {
 							'Content-Type': 'application/json',
@@ -59,12 +72,24 @@ const getState = ({ getStore, getActions, setStore }) => {
 					});
 					if (response.ok) {
 						let data = await response.json();
-						console.log(data);
+						setStore({ token: data.token });
+						localStorage.setItem("token", data.token);
+						return true;
 					}
+					return false;
+
 				} catch (error) {
 					console.log(`Error: ${error}`);
 				}
 			},
+
+
+			logout: () => {
+				localStorage.removeItem("token");
+
+				setStore({ token: "" });
+			},
+		},
 
 			
 
@@ -137,6 +162,7 @@ const getState = ({ getStore, getActions, setStore }) => {
 			// },
 			
 		}
+
 	};
 };
 

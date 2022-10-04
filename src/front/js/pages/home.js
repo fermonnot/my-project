@@ -1,6 +1,5 @@
 import React, { useContext } from "react";
 import { Context } from "../store/appContext";
-import rigoImageUrl from "../../img/rigo-baby.jpg";
 import "../../styles/home.css";
 
 export const Home = () => {
@@ -8,7 +7,15 @@ export const Home = () => {
 
 	return (
 	<>
-	<h1> landing page</h1>
+	<div className="container">
+        <div className="row">
+          {store.token.length <= 0 ? (
+            <h1>Intente de nuevo</h1>
+          ) : (
+            <h1>Bienvenido</h1>
+          )}
+        </div>
+      </div>
 	</>
 			
 	);

@@ -1,5 +1,6 @@
 import React,   { useState,useContext } from 'react';
 import { Context } from '../store/appContext';
+import {Navigate, useNavigate} from "react-router-dom";
 
 
 const Login = () => {
@@ -9,6 +10,8 @@ const Login = () => {
 	};
 	const {actions} = useContext(Context);
 	const [userLogin,setUserLogin]= useState(initState);
+
+	let navigate = useNavigate();
 
 	const handleChange = ({target}) => {
 		setUserLogin ({
@@ -22,9 +25,11 @@ const Login = () => {
 		event.preventDefault();
 		if (userLogin.email.trim() != "" && userLogin.password.trim() != "") {
 		   let response = await actions.Login(userLogin);
-		 } else {
+		   if (response){
+			navigate("/home")};
+		} else {
 		 console.log("campos obligatorios");
-		 }
+		}
  
 	};
 
