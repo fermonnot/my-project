@@ -22,30 +22,23 @@ export const Handlep = () => {
 
     let alert= () => {
         swal({
-            title:"Saved",
-            text: "Product added succesfully",
+            title:"Guardado!",
+            text: "Producto Agregado Satisfactoriamente",
             icon: "success",
-            button: "Accept"
+            button: "Aceptar"
         });
     }
 
-    let alertBad= () => {
-        
-        swal({
-            title:"Error",
-            text: "Your product has already exist",
-            icon: "error",
-            button: "Accept"
-        });
-    }
+
+    
+    
 
     
     // el preventDefault es para evitar refrescar la pagina web
     let handleSubmit = (event) => {   
         event.preventDefault()
         actions.addProduct(product);
-        alert()
-        
+        alert()  
         
 
     }

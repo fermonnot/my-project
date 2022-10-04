@@ -7,12 +7,38 @@ import "../../styles/admin.css"
 export const Admin = () => {
 	const { store, actions } = useContext(Context);
 
-	
-	let handleDelete= (id) => {   
+	let alertDelete = () => {
         
-        actions.deleteProduct(id)
+        swal({
+            title:"Eliminar",
+            text: "Seguro que deseas borrar este Producto?",
+            icon: "warning",
+            buttons: ["No","Si"]
 
-    }
+        }).then(respuesta => {
+            if (respuesta) {
+				
+                swal({
+                    text:"Su producto ha sido borrado con éxito!",
+                    icon: "success"
+                });
+				return true
+				
+            }
+        })
+		
+		
+		
+	}
+
+	// PREGUNTAR PARA QUE ME FUNCIONE EL CONDICIONAL QUE AL HACER CLICK EN SI SE EJECUTE Y NO ANTES
+	let handleDelete= (id) => {   
+
+		alertDelete();	
+		actions.deleteProduct(id)
+        
+	}
+
 
 
 
