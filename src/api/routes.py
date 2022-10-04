@@ -5,6 +5,8 @@ from flask import Flask, request, jsonify, url_for, Blueprint
 from api.models import db,User
 from api.utils import generate_sitemap, APIException
 from werkzeug.security import generate_password_hash, check_password_hash
+from flask_jwt_extended import create_access_token
+
 
 
 api = Blueprint('api', __name__)
@@ -77,10 +79,11 @@ def login():
         email = body.get('email',None)
         password = body.get('password',None)
 
-        login_user = User.query.filter_by (email=email, password=password).one_or_none()
+        login_user = User.query.filter_by (email=email).one_or_none()
         if login_user:
-            print('permiso')
-            return jsonify('acceso consedido'),200
+            if check_password(login_user.password,password):
+                acess = create_access_token(identity=login_user.id)
+            return jsonify({'token':acess}),200
         else:
             return jsonify ('acceso denegado'),400 
 
