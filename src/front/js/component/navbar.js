@@ -18,6 +18,7 @@ export const Navbar = () => {
 							<li><Link to="/admin" className="dropdown-item" href="#">Admin</Link></li>
 							<li><Link to="/register" className="dropdown-item" href="#">Registrarse</Link></li>
 							<li><Link to="/about" className="dropdown-item" href="#">Quienes Somos</Link></li>
+							<li><Link to="/login" className="dropdown-item" href="#">Iniciar sesion</Link></li>
 		
 
 
