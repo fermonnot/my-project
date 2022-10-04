@@ -4,21 +4,22 @@ const getState = ({ getStore, getActions, setStore }) => {
 			message: null,
 
 			token: localStorage.getItem("token") || "",
-
-		},
-		actions: {
-			userRegister: async (user) => {
-				let store = getStore();
-				try {
-					let response = await fetch('http://127.0.0.1:3001/api/user', {
-
-			// urlBase: "https://districlick.herokuapp.com/api",
 			urlBase: "http://127.0.0.1:3001/api",
 			endPoint: "products",
 			products: [],
 			product: [],
-			
+
 		},
+		// actions: {
+		// 	userRegister: async (user) => {
+		// 		let store = getStore();
+		// 		try {
+		// 			let response = await fetch('http://127.0.0.1:3001/api/user', {
+
+		// 	// urlBase: "https://districlick.herokuapp.com/api",
+
+
+		// },
 		actions: {
 			// Use getActions to call a function within a fuction
 			getProducts: async () => {
@@ -89,9 +90,9 @@ const getState = ({ getStore, getActions, setStore }) => {
 
 				setStore({ token: "" });
 			},
-		},
 
-			
+
+
 
 
 			addProduct: async (product) => {
@@ -106,24 +107,24 @@ const getState = ({ getStore, getActions, setStore }) => {
 					})
 					console.log(response)
 					if (response.ok) {
-						
+
 						console.log("me guardé")
 					}
 
 				} catch (error) {
-					
+
 					console.log("explote"(error))
 				}
 
 			},
-			
+
 			deleteProduct: async (product_id) => {
 				console.log(product_id)
 				let store = getStore()
 				try {
 					let response = await fetch(`${store.urlBase}/products/${product_id}`, {
 						method: "DELETE",
-						
+
 					})
 					console.log(response)
 					if (response.ok) {
@@ -160,7 +161,7 @@ const getState = ({ getStore, getActions, setStore }) => {
 			// 		console.log((error))
 			// 	}
 			// },
-			
+
 		}
 
 	};

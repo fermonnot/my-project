@@ -26,7 +26,7 @@ const Login = () => {
 		if (userLogin.email.trim() != "" && userLogin.password.trim() != "") {
 		   let response = await actions.Login(userLogin);
 		   if (response){
-			navigate("/home")};
+			navigate("/")};
 		} else {
 		 console.log("campos obligatorios");
 		}

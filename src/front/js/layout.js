@@ -31,8 +31,8 @@ const Layout = () => {
                     <Navbar />
                     <Routes>
 
-                        <Route element={<Home />} path="/home" />
-                        <Route element={<Demo />} path="/demo" />
+                        
+                        
 
                         <Route element={<Products />} path="/" />
                         <Route element={<Admin />} path="/admin" />
