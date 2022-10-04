@@ -38,3 +38,20 @@ class User(db.Model):
             "sicm": self.sicm,
             # do not serialize the password, its a security breach
         }
+
+class Products (db.Model):
+    id = db.Column(db.Integer, primary_key=True)
+    description = db.Column(db.String(120), unique=True, nullable=False)
+    laboratory = db.Column(db.String(120), unique=False, nullable=False)
+    price = db.Column(db.Float, unique=False, nullable=False)
+    quantity = db.Column(db.Integer, unique=False, nullable=False)
+
+    def serialize(self):
+        return {
+            "id": self.id,
+            "description": self.description,
+            "laboratory":self.laboratory,
+            "price": self.price,
+            "quantity": self.quantity
+        }
+
