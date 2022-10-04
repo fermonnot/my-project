@@ -6,12 +6,16 @@ import { Products } from "./pages/Products.jsx";
 import { Admin } from "./pages/Admin.jsx";
 import { Single } from "./pages/single";
 import { Handlep } from "./pages/HandleP.jsx";
+import Register from "./pages/Register.jsx";
+import Login from "./pages/Login.jsx";
+import {AboutUs} from "./pages/AboutUs.jsx";
+import {OrdenCo} from "./pages/OrdenCo.jsx";
+
 import injectContext from "./store/appContext";
 
 import { Navbar } from "./component/navbar";
 import { Footer } from "./component/footer";
-import Register from "./pages/Register.jsx";
-import Login from "./pages/Login.jsx";
+
 
 
 //create your first component
@@ -32,6 +36,7 @@ const Layout = () => {
                         <Route element={<Single />} path="/single/:theid" />
                         <Route element={<Register />} path="/Register" />
                         <Route element={<Login />} path="/Login" />
+                        <Route element={<AboutUs />} path="/about" />
                         <Route element={<h1>Not found!</h1>} />
                     </Routes>
                     <Footer />

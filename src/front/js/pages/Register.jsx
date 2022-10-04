@@ -48,7 +48,7 @@ const Register = () => {
 				<div className="col-12 col-md-6">
 					<form onSubmit = {handleSubmit}>	
 						<div className="form-group">
-							<label>Email</label>
+							<label>Correo electrónico</label>
 							<input 
 							 type="text"
 							 name="email" 
@@ -59,7 +59,7 @@ const Register = () => {
 						</div>
 
 						<div className="form-group">
-							<label>Password</label>
+							<label>Contraseña</label>
 							<input  
 							 type="text"
 							 name="password" 

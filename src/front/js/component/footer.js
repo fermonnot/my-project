@@ -1,9 +1,13 @@
 import React, { Component } from "react";
+import "../../styles/footer.css"
 
 export const Footer = () => (
 	<footer className="footer mt-auto py-3 text-center">
 		<p>
-			Made with <i className="fa fa-heart text-danger" /> by{" "}
+			<i className="fab fa-instagram footerI"></i> <i className="fab fa-facebook-square footerI"></i> <i className="fab fa-twitter-square footerI"></i> <i className="fab fa-google footerI"></i>
+			<h5>@districlick </h5>
+			<h5>districlick@gmail.com </h5>
+			<h5>+58-412-4284134 / +58-424-6209089 </h5>
 			<a href="http://www.4geeksacademy.com">4Geeks Academy</a>
 		</p>
 	</footer>
