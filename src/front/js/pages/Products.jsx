@@ -4,6 +4,7 @@ import "../../styles/home.css";
 
 export const Products = () => {
 	const { store, actions } = useContext(Context);
+	
 
 	return (
 		<div className="text-center mt-5">
@@ -23,7 +24,7 @@ export const Products = () => {
 				</div>
 				<div className="carousel-inner">
 					<div className="carousel-item active">
-						<img src="https://picsum.photos/id/237/200/300" alt="..." />
+						<img src="https://image.shutterstock.com/image-photo/purchase-delivery-medicines-your-home-600w-1684711036.jpg" alt="..." />
 						<div className="carousel-caption d-none d-md-block">
 							<h5>First slide label</h5>
 							<p>Some representative placeholder content for the first slide.</p>
@@ -51,7 +52,7 @@ export const Products = () => {
 						</div>
 					</div>
 					<div className="carousel-item">
-						<img src="https://picsum.photos/200/200" alt="..." />
+						<img src="https://cdn.bizneo.com/blog/wp-content/uploads/2020/07/Formacion-de-equipos-de-trabajo-810x455.webp" alt="..." />
 						<div className="carousel-caption d-none d-md-block">
 							<h5>Third slide label</h5>
 							<p>Some representative placeholder content for the third slide.</p>
@@ -72,7 +73,7 @@ export const Products = () => {
 					return (
 						<div key={index} className="card col-xs-12 col-sm-6 col-md-4 col-lg-3 mx-1 my-2">
 
-							<img src="https://picsum.photos/id/237/200/300" className="card-img-top" alt="..." />
+							<img src="https://image.shutterstock.com/image-photo/purchase-delivery-medicines-your-home-600w-1684711036.jpg" className="card-img-top" alt="..." />
 							<div className="card-body">
 								<h5 className="card-title">{products.description}</h5>
 								<p className="card-text"><b>Precio:</b> {products.price} Bs</p>

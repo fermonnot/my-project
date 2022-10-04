@@ -1,12 +1,17 @@
-import React from "react";
+import React, { useContext } from "react";
 import { Link } from "react-router-dom";
+import { Context } from "../store/appContext";
 
 export const Navbar = () => {
+	const { actions } = useContext(Context);
 	return (
 		<nav className="navbar navbar-light bg-light">
 			<div className="container">
 				<Link to="/">
+
+
 					<span className="navbar-brand mb-0 h1">DISTRICLICK</span>
+
 				</Link>
 				<div className="ml-auto">
 					<div className="dropdown">
@@ -14,14 +19,28 @@ export const Navbar = () => {
 							<i className="fas fa-bars"></i>
 						</a>
 
-						<ul className="dropdown-menu">
-							<li><Link to="/demo" className="dropdown-item" href="#">Iniciar sesion</Link></li>
-							<li><Link to="/demo" className="dropdown-item" href="#">Registrarse</Link></li>
-							<li><Link to="/demo" className="dropdown-item" href="#">Quienes Somos</Link></li>
+						<ul className="dropdown-menu dropdown-menu-right">
+							<li><Link to="/admin" className="dropdown-item" href="#">Admin</Link></li>
+							<li><Link to="/register" className="dropdown-item" href="#">Registrarse</Link></li>
+							<li><Link to="/about" className="dropdown-item" href="#">Quienes Somos</Link></li>
+							<li><Link to="/login" className="dropdown-item" href="#">Iniciar sesion</Link></li>
+							<li><Link to="/order" className="dropdown-item" href="#">Ordenar</Link></li>
+		
+
+
 
 							
 						</ul>
 					</div>
+				</div>
+				<div className="ml-auto">
+					<button
+						onClick={() => {
+							actions.logout();
+						}}
+					>
+						Salir
+					</button>
 				</div>
 			</div>
 		</nav>
