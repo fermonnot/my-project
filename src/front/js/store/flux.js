@@ -8,24 +8,15 @@ const getState = ({ getStore, getActions, setStore }) => {
 			endPoint: "products",
 			products: [],
 			product: [],
-
+			filterProducts: []
 		},
-		// actions: {
-		// 	userRegister: async (user) => {
-		// 		let store = getStore();
-		// 		try {
-		// 			let response = await fetch('http://127.0.0.1:3001/api/user', {
-
-		// 	// urlBase: "https://districlick.herokuapp.com/api",
-
-
-		// },
+		
 		actions: {
 			// Use getActions to call a function within a fuction
 			getProducts: async () => {
 				let store = getStore()
 				try {
-					let response = await fetch(`${store.urlBase}/products`)
+					let response = await fetch(`${store.urlBase}/${store.endPoint}`)
 					let data = await response.json();
 					console.log(data)
 					if (response.ok) {
@@ -162,6 +153,26 @@ const getState = ({ getStore, getActions, setStore }) => {
 			// 	}
 			// },
 
+			// 	//we have to loop the entire demo array to look for the respective index
+			// 	//and change its color
+			// 	const demo = store.demo.map((elm, i) => {
+			// 		if (i === index) elm.background = color;
+			// 		return elm;
+			// 	});
+
+			// 	//reset the global store
+			// 	setStore({ demo: demo });
+			// }
+			filterProducts: async (description) => {
+				let store = getStore()
+				let filtered = store.products.filter((product) => product.description.includes(description) == true)
+				setStore({
+
+					...store,
+					filterProducts: filtered
+				})
+				console.log(filtered)
+			}
 		}
 
 	};
