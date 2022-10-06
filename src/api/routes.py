@@ -202,7 +202,7 @@ def login():
 @api.route('/ordenco',methods=['GET'])
 def get_ordenco():
     if request.method =='GET':
-        user_id= 1
+        user_id= 2
 
         ordenco_user = OrdenCo.query.filter_by(user_id=user_id, status="processing").all()
         print(ordenco_user)
@@ -234,7 +234,8 @@ def add_ordenco():
             return jsonify('Por favor, complete los campos correctamente'),400
             return jsonify({"message":"error propertie bad "}), 400
 
-        new_orden = OrdenCo( quantity=body['quantity'],amount=body['amount'], user_id=body['user.id'], product_id=body['products.id'])
+        new_orden = OrdenCo( quantity=body['quantity'],amount=body['amount'], user_id=body['user_id'], product_id=body['product_id'], status=body["status"])
+        print(new_orden)
         db.session.add(new_orden)
 
         try :
