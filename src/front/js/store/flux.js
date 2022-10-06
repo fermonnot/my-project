@@ -8,7 +8,8 @@ const getState = ({ getStore, getActions, setStore }) => {
 			endPoint: "products",
 			products: [],
 			product: [],
-			filterProducts: []
+			filterProducts: [],
+			ordenCo: []
 		},
 		
 		actions: {
@@ -129,7 +130,24 @@ const getState = ({ getStore, getActions, setStore }) => {
 			},
 
 
+			getOrdenCo: async () => {
+				let store = getStore()
+				try {
+					let response = await fetch(`${store.urlBase}/ordenco`)
+					let data = await response.json();
+					console.log(data)
+					if (response.ok) {
+						setStore({
+							...store,
+							ordenCo: data
+						})
 
+					}
+				} catch (error) {
+
+					console.log(error)
+				}
+			},
 
 
 

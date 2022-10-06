@@ -2,7 +2,7 @@
 This module takes care of starting the API Server, Loading the DB and Adding the endpoints
 """
 from flask import Flask, request, jsonify, url_for, Blueprint
-from api.models import db,User, Products
+from api.models import db,User, Products, OrdenCo
 from api.utils import generate_sitemap, APIException
 from werkzeug.security import generate_password_hash, check_password_hash
 from flask_jwt_extended import create_access_token
@@ -196,3 +196,51 @@ def login():
             return jsonify ('acceso denegado'),400 
 
     return jsonify ('bienvenido'),201
+
+
+
+@api.route('/ordenco',methods=['GET'])
+def get_ordenco():
+    if request.method =='GET':
+        user_id= 1
+
+        ordenco_user = OrdenCo.query.filter_by(user_id=user_id, status="processing").all()
+        print(ordenco_user)
+        # if ordenco_user:
+        #     if Status == and user_id("user.id") > 0:
+
+                
+        #     return jsonify({'token':acess}),200
+
+        # else:
+        #     return jsonify ('acceso denegado'),400 
+        return jsonify(list(map(lambda item:item.serialize(),ordenco_user))), 200
+
+
+
+
+
+
+@api.route('/ordenco', methods=['POST'])
+def add_ordenco():
+    if request.method == 'POST':
+        body = request.json  
+        quantity = body.get('quantity',None)
+        amount = body.get ('amount',None)
+        user_id = body.get('user.id',None )
+        product_id = body.get('products.id', None)
+        
+        if quantity is None:
+            return jsonify('Por favor, complete los campos correctamente'),400
+            return jsonify({"message":"error propertie bad "}), 400
+
+        new_orden = OrdenCo( quantity=body['quantity'],amount=body['amount'], user_id=body['user.id'], product_id=body['products.id'])
+        db.session.add(new_orden)
+
+        try :
+            db.session.commit()
+            return jsonify(new_orden.serialize()),201
+        except Exception as error:
+            print(error.args)
+            db.session.rollback()
+            return jsonify({"message":f"Error {error.args}"}),500

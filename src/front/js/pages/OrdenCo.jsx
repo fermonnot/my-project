@@ -3,9 +3,11 @@ import { Link } from "react-router-dom";
 
 import { Context } from "../store/appContext";
 
-
+const initalState= {product_id:"",status:"processing", quantity:0, amount:0}
 export const OrdenCo = () => {
 	const { store, actions } = useContext(Context);
+	const [ordenco, setOrdenco]= useState(initalState)
+
 
 	let alertDelete = () => {
         
@@ -39,10 +41,29 @@ export const OrdenCo = () => {
         
 	}
 
-
+	useEffect(()=>{actions.getOrdenCo()},[store.ordenCo])
 
 
 	return (
+		<>
+		<div className="container">
+			<ul>
+			{store.ordenCo.map((ordenco, i) => {
+				return (
+
+					<div key={i}> 
+					<li> product_id{ordenco.product_id}</li>
+					<li> status {ordenco.status}</li>
+					<li> quantity {ordenco.quantity}</li>
+					<li> amount {ordenco.amount}</li>
+					</div>
+					
+
+				)
+
+			})}
+			</ul>
+		</div>
 		<div className="container">
 			<table className="table table-striped text-center">
 				<thead>
@@ -81,5 +102,6 @@ export const OrdenCo = () => {
 				<button className="btn btn-primary mx-3">Agregar Productos</button>
 			</Link>
 		</div>
+		</>
 	);
 };

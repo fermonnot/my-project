@@ -26,16 +26,12 @@ export const Navbar = () => {
 							<i className="fas fa-bars"></i>
 						</a>
 
-						<ul className="dropdown-menu dropdown-menu-right">
-							<li><Link to="/admin" className="dropdown-item" href="#">Admin</Link></li>
-							<li><Link to="/register" className="dropdown-item" href="#">Registrarse</Link></li>
-							<li><Link to="/about" className="dropdown-item" href="#">Quienes Somos</Link></li>
-							<li><Link to="/login" className="dropdown-item" href="#">Iniciar sesion</Link></li>
-							<li><Link to="/order" className="dropdown-item" href="#">Ordenar</Link></li>
-		
-
-
-
+						<ul className="dropdown-menu dropdown-menu-end">
+							<li><Link to="/admin" className="dropdown-item border-bottom" href="#">Admin</Link></li>
+							<li><Link to="/register" className="dropdown-item border-bottom" href="#">Registrarse</Link></li>
+							<li><Link to="/about" className="dropdown-item border-bottom" href="#">Quienes Somos</Link></li>
+							<li><Link to="/login" className="dropdown-item border-bottom" href="#">Iniciar sesion</Link></li>
+							<li><Link to="/order" className="dropdown-item border-bottom" href="#">Ordenar</Link></li>		
 							
 						</ul>
 					</div>
