@@ -11,7 +11,7 @@ const getState = ({ getStore, getActions, setStore }) => {
 			filterProducts: [],
 			ordenCo: []
 		},
-		
+
 		actions: {
 			// Use getActions to call a function within a fuction
 			getProducts: async () => {
@@ -190,7 +190,27 @@ const getState = ({ getStore, getActions, setStore }) => {
 					filterProducts: filtered
 				})
 				console.log(filtered)
-			}
+			},
+
+			AddOrdenCo: async (user) => {
+				let store = getStore();
+				try {
+					let response = await fetch(`${store.urlBase}/ordenco`, {
+
+						method: 'POST',
+						headers: {
+							'Content-Type': 'application/json',
+						},
+						body: JSON.stringify(user),
+					});
+					if (response.ok) {
+						return true;
+					}
+					return false;
+				} catch (error) {
+					console.log(`Error: ${error}`);
+				}
+			},
 		}
 
 	};

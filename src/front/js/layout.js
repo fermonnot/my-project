@@ -8,8 +8,8 @@ import { Single } from "./pages/single";
 import { Handlep } from "./pages/HandleP.jsx";
 import Register from "./pages/Register.jsx";
 import Login from "./pages/Login.jsx";
-import {AboutUs} from "./pages/AboutUs.jsx";
-import {OrdenCo} from "./pages/OrdenCo.jsx";
+import { AboutUs } from "./pages/AboutUs.jsx";
+import { OrdenCo } from "./pages/OrdenCo.jsx";
 
 import injectContext from "./store/appContext";
 
@@ -31,8 +31,8 @@ const Layout = () => {
                     <Navbar />
                     <Routes>
 
-                        
-                        
+
+
 
                         <Route element={<Products />} path="/" />
                         <Route element={<Admin />} path="/admin" />
