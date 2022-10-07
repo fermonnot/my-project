@@ -2,6 +2,7 @@ import React, { useState, useEffect, useContext } from "react";
 import { Link } from "react-router-dom";
 
 import { Context } from "../store/appContext";
+import { Item } from "./Item.jsx";
 
 const initalState = { product_id: "", status: "processing", quantity: "", amount: 0, user_id: 1 }
 export const OrdenCo = () => {
@@ -68,22 +69,7 @@ export const OrdenCo = () => {
 
 	return (
 		<>
-			<div className="container">
-				<ul>
-					{store.ordenCo.map((ordenco, i) => {
-						return (
 
-							<div key={i}>
-								<li> product_id{ordenco.product_id}</li>
-								<li> status {ordenco.status}</li>
-								<li> quantity {ordenco.quantity}</li>
-								<li> amount {ordenco.amount}</li>
-							</div>
-						)
-
-					})}
-				</ul>
-			</div>
 			<div className="container">
 				<table className="table table-striped text-center">
 					<thead>
@@ -91,30 +77,13 @@ export const OrdenCo = () => {
 							<th scope="col">Descripción</th>
 							<th scope="col">Laboratorio</th>
 							<th scope="col">Precio (Bs)</th>
-							<th scope="col">Cantidad a Comprar</th>
-							<th scope="col">Accción</th>
+							<th scope="col">Sub-Total</th>
 						</tr>
 					</thead>
 					<tbody>
 						{store.products.map((products, i) => {
 							return (
-								<tr key={i}>
-									<td>{products.description}</td>
-									<td>{products.laboratory}</td>
-									<td>{products.price}</td>
-									<td><input type="text" onChange={handleChange}
-										name="quantity"
-									// value={ordenco.quantity}
-									/></td>
-									<td>
-										<div>
-											<button type="buttom"
-												className="btn btn-primary"
-												onClick={() => addProduct(products.id, products.price)}>Agregar</button>
-										</div>
-									</td>
-
-								</tr>
+								<Item key={i} product={products} isCart={false} />
 							)
 						})}
 					</tbody>
@@ -123,8 +92,8 @@ export const OrdenCo = () => {
 				<Link to="/">
 					<button className="btn btn-primary">Vuelta a Productos</button>
 				</Link>
-				<Link to="/handlep">
-					<button className="btn btn-primary mx-3">Agregar Productos</button>
+				<Link to="/order/detail">
+					<button className="btn btn-primary mx-3">ir a carrito({store.ordenCo.length})</button>
 				</Link>
 			</div>
 		</>

@@ -61,7 +61,7 @@ const Register = () => {
 						<div className="form-group">
 							<label>Contraseña</label>
 							<input  
-							 type="text"
+							 type="password"
 							 name="password" 
 							 className="form-control" 
 							 onChange={handleChange}

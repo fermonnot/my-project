@@ -90,7 +90,6 @@ const getState = ({ getStore, getActions, setStore }) => {
 			addProduct: async (product) => {
 				let store = getStore()
 
-
 				try {
 					let response = await fetch(`${store.urlBase}/products`, {
 						method: "POST",
@@ -133,7 +132,14 @@ const getState = ({ getStore, getActions, setStore }) => {
 			getOrdenCo: async () => {
 				let store = getStore()
 				try {
-					let response = await fetch(`${store.urlBase}/ordenco`)
+					let response = await fetch(`${store.urlBase}/ordenco`,
+						{
+							headers: {
+								"Content-Type": "application/json",
+								"Authorization": `Bearer ${store.token}`
+							},
+						})
+
 					let data = await response.json();
 					console.log(data)
 					if (response.ok) {
@@ -192,24 +198,29 @@ const getState = ({ getStore, getActions, setStore }) => {
 				console.log(filtered)
 			},
 
-			AddOrdenCo: async (user) => {
-				let store = getStore();
+			addOrdenCo: async (ordenco) => {
+				let store = getStore()
+
 				try {
 					let response = await fetch(`${store.urlBase}/ordenco`, {
-
-						method: 'POST',
+						method: "POST",
 						headers: {
-							'Content-Type': 'application/json',
+							"Content-Type": "application/json",
+							"Authorization": `Bearer ${store.token}`
 						},
-						body: JSON.stringify(user),
-					});
+						body: JSON.stringify(ordenco)
+					})
+					console.log(response)
 					if (response.ok) {
-						return true;
+
+						getActions().getOrdenCo()
 					}
-					return false;
+
 				} catch (error) {
-					console.log(`Error: ${error}`);
+
+					console.log("explote",error)
 				}
+
 			},
 		}
 

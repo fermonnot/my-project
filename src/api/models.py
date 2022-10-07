@@ -75,13 +75,13 @@ class OrdenCo (db.Model):
     
 
     def serialize(self):
+        product= Products.query.get(self.product_id)
         return {
             "id": self.id,
             "quantity": self.quantity,
             "status": self.status.value,
             "amount":self.amount,
-            "user_id":self.user.id,
-            "product_id":self.products.id
+            "product": product.serialize()     
 
         }
 

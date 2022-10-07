@@ -15,6 +15,7 @@ import injectContext from "./store/appContext";
 
 import { Navbar } from "./component/navbar";
 import { Footer } from "./component/footer";
+import { Carrito } from "./pages/carrito.jsx";
 
 
 
@@ -37,6 +38,7 @@ const Layout = () => {
                         <Route element={<Products />} path="/" />
                         <Route element={<Admin />} path="/admin" />
                         <Route element={<Handlep />} path="/handlep" />
+                        <Route element={<Carrito />} path="/order/detail" />
                         <Route element={<Single />} path="/single/:theid" />
 
                         <Route element={<Register />} path="/Register" />
