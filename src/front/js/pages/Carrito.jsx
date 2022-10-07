@@ -7,8 +7,9 @@ import { Item } from "./Item.jsx";
 
 export const Carrito = () => {
     const { store, actions } = useContext(Context);
+    const [totalPrice, setTotalPrice] = useState(0)
 
-    useEffect(() => { actions.getOrdenCo() }, [store.OrdenCo])
+
 
     let alert = () => {
         swal({
@@ -18,8 +19,26 @@ export const Carrito = () => {
             button: "Aceptar"
         });
     }
+    let total = () => {
+        let sum = 0
+        store.ordenCo?.map((item) => {
+            console.log(item.amount)
+            sum += item.amount
+        })
+        console.log(sum)
+        setTotalPrice(sum)
 
-
+    }
+    useEffect(() => {
+        
+        if (store.ordenCo.length > 0) {
+            console.log("hola")
+            total()
+        }else{
+            actions.getOrdenCo()
+        }
+        console.log("hola")
+    }, [store.ordenCo])
     return (
         <>
             <div className="container">
@@ -28,7 +47,9 @@ export const Carrito = () => {
                         <tr>
                             <th scope="col">Descripción</th>
                             <th scope="col">Laboratorio</th>
-                            <th scope="col">Precio (Bs)</th>
+                            <th scope="col">Precio C/U</th>
+                            <th scope="col">Cantidad</th>
+                            <th scope="col">Sub-total </th>
                             <th scope="col">Accción</th>
                         </tr>
                     </thead>
@@ -40,6 +61,9 @@ export const Carrito = () => {
                         })}
                     </tbody>
                 </table>
+                <div>
+                    TOTAL: <b>{totalPrice} Bs</b>
+                </div>
                 <br />
                 <Link to="/order">
                     <button className="btn btn-primary">Vuelta a Orden</button>

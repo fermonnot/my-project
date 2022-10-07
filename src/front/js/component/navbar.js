@@ -10,7 +10,7 @@ export const Navbar = () => {
 		actions.filterProducts(e.target.value)
 	}
 	return (
-		<nav className="navbar navbar-light ">
+		<nav className="navbar navbar-light bg-light ">
 			<div className="container">
 				<Link to="/">
 				

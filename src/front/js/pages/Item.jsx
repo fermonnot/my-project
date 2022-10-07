@@ -43,9 +43,9 @@ export const Item = ({ product, isCart }) => {
                     <>
                         <td>{product.product.description}</td>
                         <td>{product.product.laboratory}</td>
-                        <td>{product.product.price}</td>
+                        <td>{product.product.price} Bs</td>
                         <td>{product.quantity}</td>
-                        {/* <td>{product.amount}</td> */}
+                        <td>{product.amount} Bs</td>
 
                         <td>
                             <div>
