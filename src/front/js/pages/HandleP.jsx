@@ -68,14 +68,14 @@ export const Handlep = () => {
                     <div >
                     <button type="submit" 
                         className="btn btn-primary"   
-                        onClick={handleSubmit}>Save
+                        onClick={handleSubmit}>Guardar
                     </button>
                     </div>
                 </form>
 
             </div>
             <br />
-            <Link to="/">
+            <Link to="/admin">
                 <button className="btn btn-primary">Vuelta a Productos</button>
             </Link>
         </div>

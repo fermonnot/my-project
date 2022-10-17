@@ -19,14 +19,14 @@ export const OrdenCo = () => {
 
 	const addProduct = (productId, productsPrice) => {
 		if (ordenco.quantity <= 0) {
-			console.log("debe ser > 0")
+			
 
 		} else {
 			setOrdenco({
 				...ordenco, product_id: productId, amount: productsPrice * ordenco.quantity
 			})
 		}
-		console.log(ordenco)
+		
 	}
 
 

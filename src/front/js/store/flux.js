@@ -98,7 +98,7 @@ const getState = ({ getStore, getActions, setStore }) => {
 					})
 					console.log(response)
 					if (response.ok) {
-
+						getActions().getProducts()
 						console.log("me guardé")
 					}
 
@@ -119,6 +119,7 @@ const getState = ({ getStore, getActions, setStore }) => {
 					})
 					console.log(response)
 					if (response.ok) {
+						getActions().getProducts()
 						console.log("me borré")
 					}
 
@@ -219,6 +220,30 @@ const getState = ({ getStore, getActions, setStore }) => {
 				} catch (error) {
 
 					console.log("explote",error)
+				}
+
+			},
+
+			deleteOrdenCo: async (ordenco_id) => {
+				console.log(ordenco_id)
+				let store = getStore()
+				try {
+					let response = await fetch(`${store.urlBase}/ordenco/${ordenco_id}`, {
+						method: "DELETE",
+						headers: {
+							
+							"Authorization": `Bearer ${store.token}`
+						},
+
+					})
+					console.log(response)
+					if (response.ok) {
+						getActions().getOrdenCo()
+						console.log("me borré")
+					}
+
+				} catch (error) {
+					console.log(error)
 				}
 
 			},

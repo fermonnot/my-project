@@ -24,7 +24,7 @@ const Login = () => {
 	const handleSubmit = async (event) => {
 		event.preventDefault();
 		if (userLogin.email.trim() != "" && userLogin.password.trim() != "") {
-			console.log(userLogin)
+			
 		   let response = await actions.Login(userLogin);
 		   if (response){
 			navigate("/")};
