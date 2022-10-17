@@ -22,6 +22,15 @@ const Register = () => {
 
 	};
 
+	let alertRegister= () => {
+        swal({
+            title:"Guardado!",
+            text: "Usuario Agregado Satisfactoriamente",
+            icon: "success",
+            button: "Aceptar"
+        });
+    }
+
 
 	const handleSubmit = async (event) => {
        event.preventDefault();
@@ -31,7 +40,7 @@ const Register = () => {
 		  let response = await actions.userRegister(userRegister);
 	      if (response) {
 		    setUserRegister( initState );
-		    alert ('se registro con exito');
+		    alertRegister()
 	      } else {
 		    alert ('intente de nuevo');
 	    }

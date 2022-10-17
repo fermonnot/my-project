@@ -9,23 +9,14 @@ export const Admin = () => {
 
 	let alertDelete = () => {
         
-        swal({
-            title:"Eliminar",
-            text: "Seguro que deseas borrar este Producto?",
-            icon: "warning",
-            buttons: ["No","Si"]
-
-        }).then(respuesta => {
-            if (respuesta) {
-				
-                swal({
-                    text:"Su producto ha sido borrado con éxito!",
-                    icon: "success"
-                });
-				return true
-				
-            }
-        })
+        
+		swal({
+			title: "Eliminado!",
+			text: "Producto eliminado Satisfactoriamente",
+			icon: "success",
+			button: "Aceptar"
+			});
+		
 		
 		
 		

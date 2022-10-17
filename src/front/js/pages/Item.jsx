@@ -4,13 +4,13 @@ import { Context } from "../store/appContext";
 
 
 export const Item = ({ product, isCart }) => {
-    console.log(isCart)
-    const [ordenco, setOrdenco] = useState({ quantity: 0, price: 0 })
+    
+    const [ordenco, setOrdenco] = useState({ quantity: 0, price: 0})
     const { actions } = useContext(Context)
 
 
 
-    console.log(product)
+   
     const handleChange = (event) => {
         setOrdenco({
             ...ordenco,
@@ -21,7 +21,7 @@ export const Item = ({ product, isCart }) => {
 
     const addProduct = (product) => {
         if (ordenco.quantity <= 0) {
-            console.log("debe ser > 0")
+            
 
         } else {
             actions.addOrdenCo({
@@ -31,9 +31,17 @@ export const Item = ({ product, isCart }) => {
 
             })
         }
-        console.log(ordenco)
+        
     }
-    console.log(isCart)
+
+    let handleDelete= (ordenco_id) => {   
+
+			
+		actions.deleteOrdenCo(ordenco_id),
+        console.log("me borre")
+        
+	}
+    
     return (
         <tr>
 
@@ -51,7 +59,9 @@ export const Item = ({ product, isCart }) => {
                             <div>
                                 <button type="buttom"
                                     className="btn btn-primary"
-                                    >Eliminar</button>
+                                    onClick={()=>handleDelete(product.id)}
+                                    >Eliminar
+                                </button>
                             </div>
                         </td>
                     </>

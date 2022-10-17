@@ -10,8 +10,9 @@ export const Products = () => {
 		<div className="text-center mt-5">
 			<div>
 				<h1>
-					Lorem ipsum, dolor sit amet consectetur adipisicing elit. Architecto earum et mollitia quo minima sunt vitae, nemo voluptatem modi commodi. Ad vitae itaque natus nihil tempore officiis eum inventore ea.hello again Frontend
+					¡ Bienvenido !
 				</h1>
+				<h2>Facilitamos la distribución a través de un click!</h2>
 			</div>
 			<div id="carouselExampleCaptions" className="carousel slide p-3 mb-2 bg-light text-dark" data-bs-ride="false">
 				<div className="carousel-indicators">
@@ -31,21 +32,21 @@ export const Products = () => {
 						</div>
 					</div>
 					<div className="carousel-item">
-						<img src="https://picsum.photos/200/300" alt="..." />
+						<img src="https://image.shutterstock.com/image-photo/purchase-delivery-medicines-your-home-600w-1684711036.jpg" alt="..." />
 						<div className="carousel-caption d-none d-md-block">
 							<h5>Second slide label</h5>
 							<p>Some representative placeholder content for the second slide.</p>
 						</div>
 					</div>
 					<div className="carousel-item">
-						<img src="https://picsum.photos/200/200" alt="..." />
+						<img src="https://cdn.bizneo.com/blog/wp-content/uploads/2020/07/Formacion-de-equipos-de-trabajo-810x455.webp" alt="..." />
 						<div className="carousel-caption d-none d-md-block">
 							<h5>Third slide label</h5>
 							<p>Some representative placeholder content for the third slide.</p>
 						</div>
 					</div>
 					<div className="carousel-item">
-						<img src="https://picsum.photos/200/200" alt="..." />
+						<img src="https://image.shutterstock.com/image-photo/purchase-delivery-medicines-your-home-600w-1684711036.jpg" alt="..." />
 						<div className="carousel-caption d-none d-md-block">
 							<h5>Third slide label</h5>
 							<p>Some representative placeholder content for the third slide.</p>
@@ -60,12 +61,12 @@ export const Products = () => {
 					</div>
 				</div>
 				<button className="carousel-control-prev" type="button" data-bs-target="#carouselExampleCaptions" data-bs-slide="prev">
-					<span className="carousel-control-prev-icon iconP" aria-hidden="true"></span>
+					<span className="carousel-control-prev-icon" aria-hidden="true"></span>
 					<span className="visually-hidden">Previous</span>
 				</button>
 				<button className="carousel-control-next" type="button" data-bs-target="#carouselExampleCaptions" data-bs-slide="next">
-					<span className="carousel-control-next-icon iconN" aria-hidden="true"></span>
-					<span className="visually-hidden iconN">Next</span>
+					<span className="carousel-control-next-icon" aria-hidden="true"></span>
+					<span className="visually-hidden">Next</span>
 				</button>
 			</div>
 			<div className="container row my-3  d-flex justify-content-center">

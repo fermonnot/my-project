@@ -32,12 +32,15 @@ export const Carrito = () => {
     useEffect(() => {
         
         if (store.ordenCo.length > 0) {
-            console.log("hola")
+            
             total()
         }else{
+            setTotalPrice(0)
+        }
+        if(!store.ordenCo){
             actions.getOrdenCo()
         }
-        console.log("hola")
+        
     }, [store.ordenCo])
     return (
         <>
@@ -61,8 +64,8 @@ export const Carrito = () => {
                         })}
                     </tbody>
                 </table>
-                <div>
-                    TOTAL: <b>{totalPrice} Bs</b>
+                <div className="w-100 justify-centet">
+                    TOTAL: <b>{store.ordenCo.length>0 ? totalPrice : 0} Bs</b>
                 </div>
                 <br />
                 <Link to="/order">

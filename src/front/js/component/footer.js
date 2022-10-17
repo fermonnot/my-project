@@ -8,7 +8,7 @@ export const Footer = () => (
 			<h5>@districlick </h5>
 			<h5>districlick@gmail.com </h5>
 			<h5>+58-412-4284134 / +58-424-6209089 </h5>
-			<a href="http://www.4geeksacademy.com">4Geeks Academy</a>
+			
 		</p>
 	</footer>
 );

@@ -248,3 +248,36 @@ def add_ordenco():
             print(error.args)
             db.session.rollback()
             return jsonify({"message":f"Error {error.args}"}),500
+
+# ELIMINAR ORDENCO
+
+# @api.route('/ordenco', methods=['DELETE'])
+@api.route('/ordenco/<int:ordenco_id>', methods=['DELETE'])
+@jwt_required()
+def delete_ordenco(ordenco_id):
+    
+    if request.method == 'DELETE':
+        
+        user_id = get_jwt_identity()
+        if ordenco_id is None:
+            return jsonify({"message":"Not found"}), 400
+
+        if ordenco_id is not None:
+            
+            delete_ordenco = OrdenCo.query.get(ordenco_id)
+            
+            if delete_ordenco is None:
+                return jsonify({"message":"Not found"}), 404
+            else:
+                db.session.delete(delete_ordenco)
+
+                try:
+                    db.session.commit()
+                    return jsonify([]), 204
+                except Exception as error:
+                    print(error.args)
+                    db.session.rollback()
+                    return jsonify({"message":f"Error {error.args}"}),500
+        
+    return jsonify([]), 405
+     

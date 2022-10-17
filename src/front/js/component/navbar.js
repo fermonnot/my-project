@@ -3,6 +3,9 @@ import { Link } from "react-router-dom";
 import { Context } from "../store/appContext";
 import DistriLogo from "../../img/logo.png"
 import "../../styles/navbar.css"
+
+
+
 export const Navbar = () => {
 	const { store, actions } = useContext(Context);
 
@@ -27,23 +30,29 @@ export const Navbar = () => {
 						</a>
 
 						<ul className="dropdown-menu dropdown-menu-end">
-							<li><Link to="/admin" className="dropdown-item border-bottom" href="#">Admin</Link></li>
+							
 							{store.token ?
+								<>
 								<li><Link to="/order" className="dropdown-item border-bottom" href="#">Ordenar</Link></li>
+								<li><Link to="/admin" className="dropdown-item border-bottom" href="#">Admin</Link></li>
+								<li>
+								<button className="dropdown-item border-bottom"
+								onClick={() => {
+									actions.logout();
+
+								}}>
+
+								Salir
+							</button>
+							</li>
+								</>
 								:
 								<>
 									<li><Link to="/register" className="dropdown-item border-bottom" href="#">Registrarse</Link></li>
 									<li><Link to="/login" className="dropdown-item border-bottom" href="#">Iniciar sesion</Link></li>
 								</>
 							}
-							<li>
-								<button className="dropdown-item border-bottom"
-								onClick={() => {
-									actions.logout();
-								}}>
-								Salir
-							</button>
-							</li>
+							
 						</ul>
 					</div>
 				</div>
