@@ -8,13 +8,14 @@ import { Single } from "./pages/single";
 import { Handlep } from "./pages/HandleP.jsx";
 import Register from "./pages/Register.jsx";
 import Login from "./pages/Login.jsx";
-import {AboutUs} from "./pages/AboutUs.jsx";
-import {OrdenCo} from "./pages/OrdenCo.jsx";
+import { AboutUs } from "./pages/AboutUs.jsx";
+import { OrdenCo } from "./pages/OrdenCo.jsx";
 
 import injectContext from "./store/appContext";
 
 import { Navbar } from "./component/navbar";
 import { Footer } from "./component/footer";
+import { Carrito } from "./pages/carrito.jsx";
 
 
 
@@ -31,17 +32,19 @@ const Layout = () => {
                     <Navbar />
                     <Routes>
 
-                        
-                        
+
+
 
                         <Route element={<Products />} path="/" />
                         <Route element={<Admin />} path="/admin" />
                         <Route element={<Handlep />} path="/handlep" />
+                        <Route element={<Carrito />} path="/order/detail" />
                         <Route element={<Single />} path="/single/:theid" />
 
                         <Route element={<Register />} path="/Register" />
                         <Route element={<Login />} path="/Login" />
                         <Route element={<AboutUs />} path="/about" />
+                        <Route element={<OrdenCo />} path="/order" />
                         <Route element={<h1>Not found!</h1>} />
                     </Routes>
                     <Footer />

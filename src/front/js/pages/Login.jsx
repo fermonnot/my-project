@@ -24,6 +24,7 @@ const Login = () => {
 	const handleSubmit = async (event) => {
 		event.preventDefault();
 		if (userLogin.email.trim() != "" && userLogin.password.trim() != "") {
+			console.log(userLogin)
 		   let response = await actions.Login(userLogin);
 		   if (response){
 			navigate("/")};
@@ -53,7 +54,7 @@ const Login = () => {
 
 						<div className="form- group">
 							<label>Contraseña</label>
-							<input type="text" 
+							<input type="password" 
 							name="password" 
 							className="form-control"
 							onChange={handleChange}

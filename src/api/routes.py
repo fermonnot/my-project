@@ -2,10 +2,10 @@
 This module takes care of starting the API Server, Loading the DB and Adding the endpoints
 """
 from flask import Flask, request, jsonify, url_for, Blueprint
-from api.models import db,User, Products
+from api.models import db,User, Products, OrdenCo
 from api.utils import generate_sitemap, APIException
 from werkzeug.security import generate_password_hash, check_password_hash
-from flask_jwt_extended import create_access_token
+from flask_jwt_extended import create_access_token, jwt_required, get_jwt_identity
 
 
 
@@ -27,8 +27,8 @@ def handle_products(product_id = None):
 
     if request.method == 'GET':
         if product_id is None:
-            products = Products()
-            products = products.query.all()
+    
+            products = Products.query.all()
             if products is None:
                 return jsonify ({"Message":"empty list"})
             else:
@@ -186,7 +186,7 @@ def login():
         password = body.get('password',None)
 
 
-        login_user = User.query.filter_by (email=email).one_or_none()
+        login_user = User.query.filter_by(email=email).one_or_none()
         if login_user:
             if check_password(login_user.password,password):
                 acess = create_access_token(identity=login_user.id)
@@ -196,3 +196,55 @@ def login():
             return jsonify ('acceso denegado'),400 
 
     return jsonify ('bienvenido'),201
+
+
+
+@api.route('/ordenco',methods=['GET'])
+@jwt_required()
+def get_ordenco():
+    if request.method =='GET':
+        user_id= get_jwt_identity()
+        
+
+        ordenco_user = OrdenCo.query.filter_by(user_id=user_id, status="processing").all()
+        print(ordenco_user)
+        # if ordenco_user:
+        #     if Status == and user_id("user.id") > 0:
+
+                
+        #     return jsonify({'token':acess}),200
+
+        # else:
+        #     return jsonify ('acceso denegado'),400 
+        return jsonify(list(map(lambda item:item.serialize(),ordenco_user))), 200
+
+
+
+
+
+
+@api.route('/ordenco', methods=['POST'])
+@jwt_required()
+def add_ordenco():
+    if request.method == 'POST':
+        body = request.json  
+        quantity = body.get('quantity',None)
+        amount = body.get ('amount',None)
+        product_id = body.get('product_id',None )
+        user_id = get_jwt_identity()
+        print(product_id)
+        if quantity is None:
+            return jsonify('Por favor, complete los campos correctamente'),400
+            
+
+        new_orden = OrdenCo( quantity=body['quantity'],amount=body['amount'], user_id=user_id, product_id=int(product_id), status="processing")
+        print(new_orden)
+        db.session.add(new_orden)
+
+        try :
+            db.session.commit()
+            return jsonify(new_orden.serialize()),201
+        except Exception as error:
+            print(error.args)
+            db.session.rollback()
+            return jsonify({"message":f"Error {error.args}"}),500

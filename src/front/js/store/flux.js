@@ -8,9 +8,10 @@ const getState = ({ getStore, getActions, setStore }) => {
 			endPoint: "products",
 			products: [],
 			product: [],
-			filterProducts: []
+			filterProducts: [],
+			ordenCo: []
 		},
-		
+
 		actions: {
 			// Use getActions to call a function within a fuction
 			getProducts: async () => {
@@ -89,7 +90,6 @@ const getState = ({ getStore, getActions, setStore }) => {
 			addProduct: async (product) => {
 				let store = getStore()
 
-
 				try {
 					let response = await fetch(`${store.urlBase}/products`, {
 						method: "POST",
@@ -129,7 +129,31 @@ const getState = ({ getStore, getActions, setStore }) => {
 			},
 
 
+			getOrdenCo: async () => {
+				let store = getStore()
+				try {
+					let response = await fetch(`${store.urlBase}/ordenco`,
+						{
+							headers: {
+								"Content-Type": "application/json",
+								"Authorization": `Bearer ${store.token}`
+							},
+						})
 
+					let data = await response.json();
+					console.log(data)
+					if (response.ok) {
+						setStore({
+							...store,
+							ordenCo: data
+						})
+
+					}
+				} catch (error) {
+
+					console.log(error)
+				}
+			},
 
 
 
@@ -172,7 +196,32 @@ const getState = ({ getStore, getActions, setStore }) => {
 					filterProducts: filtered
 				})
 				console.log(filtered)
-			}
+			},
+
+			addOrdenCo: async (ordenco) => {
+				let store = getStore()
+
+				try {
+					let response = await fetch(`${store.urlBase}/ordenco`, {
+						method: "POST",
+						headers: {
+							"Content-Type": "application/json",
+							"Authorization": `Bearer ${store.token}`
+						},
+						body: JSON.stringify(ordenco)
+					})
+					console.log(response)
+					if (response.ok) {
+
+						getActions().getOrdenCo()
+					}
+
+				} catch (error) {
+
+					console.log("explote",error)
+				}
+
+			},
 		}
 
 	};
